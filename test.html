@@ -96,7 +96,7 @@
         <div id="questions">
             <!-- Questions will be dynamically added here -->
         </div>
-        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button>
+        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br><br><br>
         <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Soru</button>
         <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Soru</button>
         <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
@@ -147,10 +147,10 @@
             {
                 question: "Toplam depolama alanı için ne kadar olmalı?",
                 options: [
-                    { label: "Çok fazla oyunum ve/veya dosyalarım var o yüzden 1TB'dan fazla olmalı", value: "A" },
-                    { label: "5 taneden fazla yüksek hacimli oyunum ve/veya biraz dosyalarım var o yüzden 1TB olsa yeterli", value: "B" },
-                    { label: "Birkaç tane düşük hacimli oyunum ve/veya dosyalarım var o yüzden 500GB olsa yeterli", value: "C" },
-                    { label: "Az alana sahip birkaç tane dosyam var o yüzden 500GB'dan az olabilir.", value: "D" }
+                    { label: "Çok fazla oyunum ve/veya dosyalarım var(+1TB)", value: "A" },
+                    { label: "5 taneden fazla yüksek hacimli oyunum ve/veya biraz dosyalarım var(1TB)", value: "B" },
+                    { label: "Birkaç tane düşük hacimli oyunum ve/veya dosyalarım var(500GB)", value: "C" },
+                    { label: "Az alana sahip birkaç tane dosyam var(-500GB)", value: "D" }
                 ]
             },
             {
