@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aklımdaki Bilgisayar Testi</title>
+    <style>
+        /* CSS for the test page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .option-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .option-btn.selected {
+            background-color: #f57c00;
+            color: #fff;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #f57c00;
+        }
+        #progress-bar {
+            margin-bottom: 20px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        #progress {
+            height: 100%;
+            background-color: #ff9800;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        #progress-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+        }
+        #clearSelectionBtn {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="progress-bar">
+            <div id="progress"></div>
+            <div id="progress-text">1/7</div>
+        </div>
+        <div id="questions">
+            <!-- Questions will be dynamically added here -->
+        </div>
+        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button>
+        <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Soru</button>
+        <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Soru</button>
+        <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        const questions = [
+            {
+                question: "Bilgisayarı hangi amaçla kullanacaksınız?",
+                options: [
+                    { label: "Oyun/İş(Grafiksel işlemler gerekli ise)", value: "A" },
+                    { label: "İş", value: "B" },
+                    { label: "Eğitim", value: "C" },
+                ]
+            },
+            {
+                question: "Bütçe aralığınız nedir?",
+                options: [
+                    { label: "+100.000₺", value: "A" },
+                    { label: "50.000₺ - 100.000₺", value: "B" },
+                    { label: "30.000₺ - 50.000₺", value: "C" },
+                    { label: "-30.000₺", value: "D" }
+                ]
+            },
+            {
+                question: "Hangi işletim sistemini tercih edersiniz?",
+                options: [
+                    { label: "Windows/Linux/FreeDos", value: "A" },
+                    { label: "MacOS", value: "B" }
+                ]
+            },
+            {
+                question: "Taşınabilirlik(ağırlık olarak) ne kadar önemli?",
+                options: [
+                    { label: "Sürekli yoldayım, taşınabilirlik benim için çok önemli.", value: "A" },
+                    { label: "Taşınabilirlik benim için çok önemli değil.", value: "B" }
+                ]
+            },
+            {
+                question: "Hangi boyutta bir ekran tercih edersiniz?",
+                options: [
+                    { label: "14 inç ve altı", value: "A" },
+                    { label: "15 inç", value: "B" },
+                    { label: "17 inç ve üstü", value: "C" },
+                ]
+            },
+            {
+                question: "Toplam depolama alanı için ne kadar olmalı?",
+                options: [
+                    { label: "Çok fazla oyunum ve/veya dosyalarım var o yüzden 1TB'dan fazla olmalı", value: "A" },
+                    { label: "5 taneden fazla yüksek hacimli oyunum ve/veya biraz dosyalarım var o yüzden 1TB olsa yeterli", value: "B" },
+                    { label: "Birkaç tane düşük hacimli oyunum ve/veya dosyalarım var o yüzden 500GB olsa yeterli", value: "C" },
+                    { label: "Az alana sahip birkaç tane dosyam var o yüzden 500GB'dan az olabilir.", value: "D" }
+                ]
+            },
+            {
+                question: "Bilgisayar ne kadar hızlı olmalı?",
+                options: [
+                    { label: "Yüksek performanslı, en son teknolojiye sahip bir bilgisayar olmalı.", value: "A" },
+                    { label: "Orta düzey performans yeterli, çok fazla işlem yapmayacağım.", value: "B" },
+                    { label: "Temel işleri hızlıca yapabilen bir bilgisayar yeterli.", value: "C" },
+                    { label: "Performansıyla ilgilenmiyorum, internete girsin yeter.", value: "D" }
+                ]
+            }
+        ];
+
+        const totalQuestions = questions.length;
+
+        function initializeTest() {
+            showQuestion();
+            updateProgress();
+        }
+
+        function showQuestion() {
+            const current = questions[currentQuestion];
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+            questionDiv.innerHTML = `
+                <h2>Soru ${currentQuestion + 1}: ${current.question}</h2>
+                <div class="options">
+                    ${current.options.map((option, index) => `
+                        <input type="button" class="option-btn ${index === current.selectedOption ? 'selected' : ''}" onclick="selectOption(${index})" value="${option.label}">
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById('questions').innerHTML = '';
+            document.getElementById('questions').appendChild(questionDiv);
+            checkSelection(); // Check if selection exists for the current question
+        }
+
+        function selectOption(optionIndex) {
+            questions[currentQuestion].selectedOption = optionIndex;
+            showQuestion();
+            document.getElementById('clearSelectionBtn').style.display = 'block';
+        }
+
+        function showNextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgress();
+                document.getElementById('prevBtn').style.display = 'block';
+            }
+            if (currentQuestion === totalQuestions - 1) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('completeBtn').style.display = 'block';
+            }
+        }
+
+        function showPrevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgress();
+                document.getElementById('nextBtn').style.display = 'block';
+                document.getElementById('completeBtn').style.display = 'none';
+            }
+            if (currentQuestion === 0) {
+                document.getElementById('prevBtn').style.display = 'none';
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = `${currentQuestion + 1}/${totalQuestions}`;
+        }
+
+        function completeTest() {
+        for (let i = 0; i < totalQuestions; i++) {
+            if (questions[i].selectedOption === undefined) {
+            alert("Seçim yapmadığınız soru bulunmakta! Lütfen kontrol ettikten sonra tekrar deneyiniz.");
+            return;
+            }
+        }
+
+        let result = '';
+        for (let i = 0; i < totalQuestions; i++) {
+            // Access the chosen option object based on the selected index
+            const chosenOption = questions[i].options[questions[i].selectedOption];
+            // Append the value (which represents the answer) of the chosen option to the result string
+            result += chosenOption.value;
+        }
+
+        console.log("Result:", result); // This line logs the result to the console
+        window.location.href = `result.html?result=${result}`;
+        }
+
+        function clearSelection() {
+            delete questions[currentQuestion].selectedOption;
+            showQuestion();
+            document.getElementById('clearSelectionBtn').style.display = 'none';
+        }
+
+        function checkSelection() {
+            const selectedOption = questions[currentQuestion].selectedOption;
+            const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+            if (selectedOption === undefined) {
+                clearSelectionBtn.style.display = 'none';
+            } else {
+                clearSelectionBtn.style.display = 'block';
+            }
+        }
+
+        initializeTest();
+    </script>
+</body>
+</html>

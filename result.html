@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aklınızdaki Bilgisayar Test Sonucu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #824203;
+        }
+        .matched-products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .product-box {
+            width: 600px;
+            height: 200px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: #ff9800;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex; /* Make the container a flex container */
+            flex-direction: row; /* Arrange the items in a row */
+            align-items: center; /* Align the items vertically in the center */
+            justify-content: space-between; /* Distribute the items evenly with space between them*/
+        }
+        .product-box:hover {
+            background-color: #ffffff;
+            color: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .product-spec {
+            text-align: left;
+            margin-left: 20px;
+        }
+        .product-price {
+            text-align: left;
+            margin-left: 20px;
+        }
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .product-details p {
+        display: flex;
+        text-align: left;
+        margin-right: 30px;
+        }
+        .product-details h3 {
+        font-weight: bold;
+        text-align: center;
+        }
+        .not-found-message {
+        display: none;
+        color: orange;
+        font-size: 18px;
+        margin-top: 20px;
+        cursor: pointer;
+        }
+        .kare-gorsel {
+        width: 200px; /* Genişlik */
+        height: 200px; /* Yükseklik */
+        object-fit: cover; /* Görüntüyü kırpma yöntemi */
+        margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aklınızdaki Bilgisayar</h1>
+        <h1 class="result" id="testResult"></h1>
+        <div class="matched-products" id="matchedProducts">
+            
+        </div>
+        <div class="not-found-message" id="notFoundMessage">Aklınızdaki bilgisayarı bulamadık, ama aklınızdaki sayıyı bulabiliriz :) <a href="test2.html"><br>Buraya tıklayarak oyunu başlatabilirsiniz!</a></div>
+        <div style="margin-top: 20px;">
+            <button class="btn" onclick="window.location.href = 'test.html';">Yeniden Test Yap</button>
+            <button class="btn" onclick="window.location.href = 'index.html';">Ana Sayfaya Dön</button>
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const result = urlParams.get('result');
+    
+        if (result) {
+            //document.getElementById('testResult').textContent = `Test Sonucu: ${result}`; // Sonucu ekranda göster
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const matchedProducts = data.filter(product => product.etikets.includes(result));
+                    const sortedProducts = matchedProducts.sort((a, b) => a.fiyat - b.fiyat); // Fiyata göre sırala
+                    displayMatchedProducts(sortedProducts);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+    
+        function displayMatchedProducts(products) {
+            const matchedProductsDiv = document.getElementById('matchedProducts');
+            if (products.length > 0) {
+                products.forEach(product => {
+                    const productBox = document.createElement('div');
+                    productBox.classList.add('product-box');
+                    productBox.innerHTML = `
+                    <img src="${product.urun_gorseli}" alt="Ürün Görseli" class="kare-gorsel">
+                        <div class="product-details">
+                            <h3 class="product-name">${product.urun_adi}</h3>
+                            <p class="product-spec"><strong>İşlemci:</strong>&nbsp;&nbsp; ${product.islemci}</p>
+                            <p class="product-spec"><strong>Ekran Kartı:</strong>&nbsp;&nbsp; ${product.ekran_karti}</p>
+                            <p class="product-spec"><strong>RAM:</strong>&nbsp;&nbsp; ${product.ram}</p>
+                            <p class="product-spec"><strong>Disk:</strong>&nbsp;&nbsp; ${product.disk}</p>
+                            <p class="product-price"><strong>Fiyat:</strong>&nbsp;&nbsp; ${product.fiyat}</p>
+                        </div>
+                    `;
+                    productBox.addEventListener('click', () => window.open(product.link, '_blank')); // Ürün kutucuğuna tıklanınca linke git
+                    matchedProductsDiv.appendChild(productBox);
+                });
+            } else {
+                matchedProductsDiv.textContent = 'Üzgünüz, aradığınız kriterlere uygun bilgisayar bulamadık :(';
+                document.getElementById('notFoundMessage').style.display = 'block'; // Eğer ürün bulunamazsa mesajı göster
+            }
+        }
+    </script>
+</body>
+</html>

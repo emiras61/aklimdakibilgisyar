@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aklımdaki Sayı Testi</title>
+    <style>
+        /* CSS for the test page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+        .option-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .option-btn.selected {
+            background-color: #f57c00;
+            color: #fff;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .submit-btn:hover {
+            background-color: #f57c00;
+        }
+        #progress-bar {
+            margin-bottom: 20px;
+            height: 20px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        #progress {
+            height: 100%;
+            background-color: #ff9800;
+            width: 0;
+            transition: width 0.3s ease;
+        }
+        #progress-text {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+        }
+        #clearSelectionBtn {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="progress-bar">
+            <div id="progress"></div>
+            <div id="progress-text">0/6</div>
+        </div>
+        <div id="questions">
+            <!-- Questions will be dynamically added here -->
+        </div>
+        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br><br><br>
+        <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Kart</button>
+        <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Kart</button>
+        <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
+    </div>
+
+    <script>
+        let currentQuestion = 0;
+        const questions = [
+            {
+                question: "Oyunumuza Hoşgelidniz!\nŞimdi sizden 1 ile 63 arasında aklınızdan bir sayı tutmanızı istiyoruz\nÖnünüze 6 tane kart destesi gelecek!\nEğer aklınızdaki sayı mevcut destede varsa Evet yoksa 'Hayır' butonuna tıklayacaksınız\nHazırsanız sonraki karta geçebilirsiniz!",
+                options: [
+                    { label: "Evet", value: "0+" },
+                ]
+            },
+            {
+                question: "1, 3, 5, 7, 9, 11, 13, 15,<br>17, 19, 21, 23, 25, 27, 29, 31,<br>33, 35, 37, 39, 41, 43, 45, 47,<br>49, 51, 53, 55, 57, 59, 61, 63",
+                options: [
+                    { label: "Evet", value: "1+" },
+                    { label: "Hayır", value: "0+" },
+                ]
+            },
+            {
+                question: "2, 3, 6, 7, 10, 11, 14, 15,<br>18, 19, 22, 23, 26, 27, 30, 31,<br>34, 35, 38, 39, 42, 43, 46, 47,<br>50, 51, 54, 55, 58, 59, 62, 63",
+                options: [
+                    { label: "Evet", value: "2+" },
+                    { label: "Hayır", value: "0+" },
+                ]
+            },
+            {
+                question: "4, 5, 6, 7, 12, 13, 14, 15,<br>20, 21, 22, 23, 28, 29, 30, 31,<br>36, 37, 38, 39, 44, 45, 46, 47,<br>52, 53, 54, 55, 60, 61, 62, 63",
+                options: [
+                    { label: "Evet", value: "4+" },
+                    { label: "Hayır", value: "0+" },
+                ]
+            },
+            {
+                question: "8, 9, 10, 11, 12, 13, 14, 15,<br>24, 25, 26, 27, 28, 29, 30, 31,<br>40, 41, 42, 43, 44, 45, 46, 47,<br>56, 57, 58, 59, 60, 61, 62, 63",
+                options: [
+                    { label: "Evet", value: "8+" },
+                    { label: "Hayır", value: "0+" },
+                ]
+            },
+            {
+                question: "16, 17, 18, 19, 20, 21, 22, 23,<br>24, 25, 26, 27, 28, 29, 30, 31,<br>48, 49, 50, 51, 52, 53, 54, 55,<br>56, 57, 58, 59, 60, 61, 62, 63",
+                options: [
+                    { label: "Evet", value: "16+" },
+                    { label: "Hayır", value: "0+" },
+                ]
+            },
+            {
+                question: "32, 33, 34, 35, 36, 37, 38, 39,<br>40, 41, 42, 43, 44, 45, 46, 47,<br>48, 49, 50, 51, 52, 53, 54, 55,<br>56, 57, 58, 59, 60, 61, 62, 63",
+                options: [
+                    { label: "Evet", value: "32" },
+                    { label: "Hayır", value: "0" },
+                ]
+            }
+        ];
+
+        const totalQuestions = questions.length;
+
+        function initializeTest() {
+            showQuestion();
+            updateProgress();
+        }
+
+        function showQuestion() {
+        const current = questions[currentQuestion];
+        const questionDiv = document.createElement('div');
+        questionDiv.classList.add('question');
+
+        let questionText;
+        if (currentQuestion === 0) {
+            questionText = `<h2> ${current.question} <br><br> Aklınızdan Bir Sayı Tuttunuz Mu?</h2>`;
+        } else {
+            questionText = `<h2>Kart ${currentQuestion}: <br><br> ${current.question} <br><br> Aklınızdaki Sayı Burada Var Mı?</h2>`;
+        }
+
+        questionDiv.innerHTML = questionText;
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.classList.add('options');
+
+        questionDiv.appendChild(optionsDiv);
+
+        current.options.forEach((option, index) => {
+            const optionBtn = document.createElement('input');
+            optionBtn.type = 'button';
+            optionBtn.classList.add('option-btn');
+            if (index === current.selectedOption) {
+            optionBtn.classList.add('selected');
+            }
+            optionBtn.value = option.label;
+            optionBtn.onclick = () => selectOption(index);
+            optionsDiv.appendChild(optionBtn);
+        });
+
+        document.getElementById('questions').innerHTML = '';
+        document.getElementById('questions').appendChild(questionDiv);
+        checkSelection(); // Check if selection exists for the current question
+        }
+
+
+        function selectOption(optionIndex) {
+            questions[currentQuestion].selectedOption = optionIndex;
+            showQuestion();
+            document.getElementById('clearSelectionBtn').style.display = 'block';
+        }
+
+        function showNextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgress();
+                document.getElementById('prevBtn').style.display = 'block';
+            }
+            if (currentQuestion === totalQuestions - 1) {
+                document.getElementById('nextBtn').style.display = 'none';
+                document.getElementById('completeBtn').style.display = 'block';
+            }
+        }
+
+        function showPrevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgress();
+                document.getElementById('nextBtn').style.display = 'block';
+                document.getElementById('completeBtn').style.display = 'none';
+            }
+            if (currentQuestion === 0) {
+                document.getElementById('prevBtn').style.display = 'none';
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = `${currentQuestion + 1}/${totalQuestions}`;
+        }
+
+        function completeTest() {
+        for (let i = 0; i < totalQuestions; i++) {
+            if (questions[i].selectedOption === undefined) {
+            alert("Seçim yapmadığınız soru bulunmakta! Lütfen kontrol ettikten sonra tekrar deneyiniz.");
+            return;
+            }
+        }
+
+        let result2 = 0; // Sonuç için başlangıç değeri
+            for (let i = 0; i < totalQuestions; i++) {
+                // Seçilen seçeneğin değerini al
+                const chosenOption = questions[i].options[questions[i].selectedOption].value;
+                // Değerleri topla (sayısal ifade olduğu varsayılarak)
+                result2 += parseInt(chosenOption);
+            }
+
+            console.log("Result2:", result2); // Bu satır sonucu konsola kaydeder
+            // Sonucu sonuç sayfasına yönlendir
+            window.location.href = `result2.html?result2=${result2}`;
+        }
+
+        function clearSelection() {
+            delete questions[currentQuestion].selectedOption;
+            showQuestion();
+            document.getElementById('clearSelectionBtn').style.display = 'none';
+        }
+
+        function checkSelection() {
+            const selectedOption = questions[currentQuestion].selectedOption;
+            const clearSelectionBtn = document.getElementById('clearSelectionBtn');
+            if (selectedOption === undefined) {
+                clearSelectionBtn.style.display = 'none';
+            } else {
+                clearSelectionBtn.style.display = 'block';
+            }
+        }
+
+        initializeTest();
+    </script>
+</body>
+</html>
