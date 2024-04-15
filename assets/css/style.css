@@ -9,11 +9,11 @@ body {
 
 a {
   text-decoration: none;
-  color: #ffffff;
+  color: #ff6f00;
 }
 
 a:hover {
-  color: #b84f0a;
+  color: #0f0f0f;
 }
 
 h1,
@@ -150,11 +150,11 @@ section {
   height: 80px;
   z-index: 997;
   transition: all 0.5s;
-  background: #c3692f; /* Arka plan başlangıçta koyu gri */
+  background: #ffffff00; /* Arka plan başlangıçta koyu gri */
 }
 
 #header.header-scrolled {
-  background: #c3692f; /* Arka plan kaydırıldığında turuncu */
+  background: #f7f1ed53; /* Arka plan kaydırıldığında turuncu */
   height: 60px;
 }
 
@@ -169,7 +169,7 @@ section {
 
 #header .logo h1 a
 #header .logo h1 a:hover {
-  color: #fefefe; /* Yazılar başlangıçta beyaz */
+  color: #ffffff; /* Yazılar başlangıçta beyaz */
   text-decoration: none;
   line-height: 0;
 }
@@ -231,7 +231,7 @@ section {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #fefefe;
+  color: #ff6f00;
 }
 
 .navbar .dropdown ul {
@@ -304,7 +304,7 @@ section {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #fefefe;
+  color: #ff8000;
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -329,7 +329,7 @@ section {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(250, 106, 35, 0.9);
+  background: rgba(249, 133, 75, 0.9);
   transition: 0.3s;
 }
 
@@ -410,7 +410,7 @@ section {
 #hero {
   width: 100%;
   height: 75vh;
-  background: url("../img/hero-background.jpg") top center;
+  background: url("../img/bg6.png") top center;
   background-size: cover;
   position: relative;
   margin-bottom: -80px;
@@ -418,7 +418,7 @@ section {
 
 #hero:before {
   content: "";
-  background: rgba(184, 79, 10, 0.85);
+  background: rgba(184, 80, 10, 0);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -445,11 +445,11 @@ section {
   font-size: 48px;
   font-weight: 300;
   line-height: 56px;
-  color: #fefefe;
+  color: #ff6600;
 }
 
 #hero h2 {
-  color: #eee;
+  color: #605c5c;
   margin-bottom: 50px;
   font-size: 20px;
   font-weight: 300;
@@ -464,14 +464,14 @@ section {
   padding: 8px 28px 10px 28px;
   border-radius: 50px;
   transition: 0.5s;
-  border: 1px solid #fefefe;
-  color: #fefefe;
+  border: 1px solid #b84f0a;
+  color: #b84f0a;
 }
 
 #hero .btn-get-started:hover {
-  background: #fefefe;
-  color: #b84f0a;
-  border: 1px solid #b84f0a;
+  background: #b84f0a;
+  color: #fefefe;
+  border: 1px solid #fefefe;
 }
 
 @media (min-width: 1024px) {
@@ -497,6 +497,7 @@ section {
 # About Us
 --------------------------------------------------------------*/
 .about h3 {
+  color: #ff6f00;
   font-weight: 400;
   font-size: 26px;
 }
@@ -513,7 +514,7 @@ section {
 .about ul i {
   font-size: 22px;
   padding-right: 4px;
-  color: #b84f0a;
+  color: #ff6f00;
   line-height: 0;
 }
 

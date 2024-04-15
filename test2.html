@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aklımdaki Sayı Testi</title>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <style>
         /* CSS for the test page */
         body {
             font-family: Arial, sans-serif;
-            background-color: #d6ae86;
+            background-image: url('/assets/img/bg5.png');
+            background-size: cover;
             margin: 0;
             padding: 0;
         }
@@ -72,102 +75,18 @@
             background-color: #ff9800;
             width: 0;
             transition: width 0.3s ease;
+            position: relative; /* Pozisyonu relative olarak ayarlayın */
         }
+
         #progress-text {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 50%; /* Yüksekliği yüzde olarak ayarlayın */
+            left: 50%; /* Sol kenarı yüzde olarak ayarlayın */
+            transform: translate(-50%, -50%); /* Metni yatay ve dikey olarak ortalamak için */
             color: #333;
-        }
-        #clearSelectionBtn {
-            display: none;
-            margin-bottom: 10px;
-            background-color: #ffffff00;
-            color: #f57c00;
-        }
-        .btn-group {
-            display: flex;
-            justify-content: space-between;
-        }
-        .btn-group button {
-            margin: 0 5px; /* Butonlar arasında sağ ve sol margin ekle */
-        }
-        /* CSS for the test page */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #d6ae86;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
+            font-size: 13px;
             text-align: center;
         }
-        .options {
-            margin-bottom: 20px;
-        }
-        .option-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px;
-        }
-        .option-btn:hover {
-            background-color: #e0e0e0;
-        }
-        .option-btn.selected {
-            background-color: #f57c00;
-            color: #fff;
-        }
-        .submit-btn {
-            width: 100%; /* Butonun genişliğini otomatik olarak ayarla */
-            padding: 10px;
-            background-color: #ff9800;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-bottom: 20px;
-        }
-        .submit-btn:hover {
-            background-color: #f57c00;
-        }
-        #progress-bar {
-            margin-bottom: 20px;
-            height: 20px;
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-        }
-        #progress {
-            height: 100%;
-            background-color: #ff9800;
-            width: 0;
-            transition: width 0.3s ease;
-        }
-        #progress-text {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #333;
-        }
         #clearSelectionBtn {
             display: none;
             margin-bottom: 10px;
@@ -181,15 +100,16 @@
         .btn-group button {
             margin: 0 5px; /* Butonlar arasında sağ ve sol margin ekle */
         }
-        /*--------------------------------------------------------------
+         /*--------------------------------------------------------------
         # Footer
         --------------------------------------------------------------*/
         #footer {
             position: absolute;
             bottom: 0;
             width: 100%;
+            height: 7%;
             background: #ffffff;
-            padding: 30px 0;
+            padding: 25px 0; /* Yukarı ve aşağı 15px olarak ayarlandı */
             color: #231f20;
             font-size: 14px;
             display: flex;
@@ -201,6 +121,7 @@
         #footer .logo {
             flex: 1; /* Footer içindeki alanı eşit olarak paylaştır */
             text-align: center; /* Logoyu ortala */
+            margin-bottom: 0px;
         }
 
         #footer .logo img {
@@ -212,6 +133,7 @@
         #footer .credits {
             flex: 1; /* Footer içindeki alanı eşit olarak paylaştır */
             text-align: center; /* Metni ortala */
+            margin-bottom: 0px;
         }
 
         #footer .credits a {
@@ -223,6 +145,39 @@
         #footer .credits a:hover {
             color: #ff0000;
         }
+        @media (max-width: 600px) {
+        body {
+            background-size: auto; /* Otomatik yakınlaşma */
+            background-attachment: scroll; /* Arka plan resminin kaydırılmasına izin ver */
+            background-position: center center; /* Resmi dikey ve yatay olarak merkezle */
+        }
+        .container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #footer {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #footer .logo{
+            width: 0%;
+            align-items: center;
+        }
+        #footer .credits {
+            margin-bottom: 0px;
+        }
+
+        #footer .logo img,
+        #footer .credits p {
+            max-width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
@@ -423,7 +378,7 @@
             <a href="index.html"><img src="assets/img/logo.png" alt="Uygulama Logo" style="max-width: 150px;"></a>
         </div>
         <div class="credits">
-            <p>&copy;<strong><span>Aklımdaki Bilgisayar</span></strong>. Tüm hakları saklıdır.</p>
+            <p>&copy;<strong><span><a href="index.html">Aklımdaki Bilgisayar</a></span></strong>. Tüm hakları saklıdır.</p>
             <p>Designed by <a href="https://www.linkedin.com/in/emiras61/">WHITECODE</a></p>
         </div>
         <div class="logo">
