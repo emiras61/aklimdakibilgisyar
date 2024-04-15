@@ -46,8 +46,7 @@
             color: #fff;
         }
         .submit-btn {
-            display: block;
-            width: 100%;
+            width: 100%; /* Butonun genişliğini otomatik olarak ayarla */
             padding: 10px;
             background-color: #ff9800;
             color: #fff;
@@ -84,6 +83,15 @@
         #clearSelectionBtn {
             display: none;
             margin-bottom: 10px;
+            background-color: #ffffff00;
+            color: #f57c00;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-group button {
+            margin: 0 5px; /* Butonlar arasında sağ ve sol margin ekle */
         }
     </style>
 </head>
@@ -96,10 +104,12 @@
         <div id="questions">
             <!-- Questions will be dynamically added here -->
         </div>
-        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br><br><br>
-        <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Kart</button>
-        <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Kart</button>
-        <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
+        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br>
+        <div class="btn-group">
+            <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Kart</button>
+            <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Kart</button>
+            <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
+        </div>
     </div>
 
     <script>
