@@ -57,6 +57,42 @@
             transition: background-color 0.3s ease;
             margin-bottom: 20px;
         }
+        .submit-btn-tamamla {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #12d812;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .submit-btn-onceki-soru {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ffb23fd3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .submit-btn-secimi-temizle {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #ff0000bb;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
         .submit-btn:hover {
             background-color: #f57c00;
         }
@@ -86,6 +122,8 @@
             margin-bottom: 10px;
         }
     </style>
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 </head>
 <body>
     <div class="container">
@@ -96,10 +134,10 @@
         <div id="questions">
             <!-- Questions will be dynamically added here -->
         </div>
-        <button id="clearSelectionBtn" class="submit-btn" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br><br><br>
-        <button id="prevBtn" class="submit-btn" onclick="showPrevQuestion()" style="display: none;">Önceki Kart</button>
+        <button id="clearSelectionBtn" class="submit-btn-secimi-temizle" onclick="clearSelection()" style="display: none;">Seçimi Temizle</button><br><br><br>
+        <button id="prevBtn" class="submit-btn-onceki-soru" onclick="showPrevQuestion()" style="display: none;">Önceki Kart</button>
         <button id="nextBtn" class="submit-btn" onclick="showNextQuestion()">Sonraki Kart</button>
-        <button id="completeBtn" class="submit-btn" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
+        <button id="completeBtn" class="submit-btn-tamamla" onclick="completeTest()" style="display: none;">Testi Tamamla</button>
     </div>
 
     <script>

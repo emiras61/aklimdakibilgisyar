@@ -1,5 +1,163 @@
 [
     {
+        "urun_adi": "ASUS ROG Zephyrus G14",
+        "islemci": "Ryzen 9 8945HS",
+        "ekran_karti": "NVIDIA GeForce RTX 4060",
+        "ram": "16GB DDR4",
+        "disk": "1TB NVMe SSD",
+        "fiyat": "73.999₺",
+        "urun_gorseli": "https://productimages.hepsiburada.net/s/777/550/110000647070555.jpg/format:webp",
+        "link": "https://www.hepsiburada.com/asus-rog-zephyrus-g14-ga403-ga403uv-qs133-8gb-rtx4060-ryzen-9-8945hs-16gb-ram-1tb-ssd-14-inc-oled-120hz-0-2ms-tasinabilir-bilgisayar-pm-HBC000061ZCOR?ds_rl=1294343&wt_gl=cpc.6802-IT.dsa.camp1635354844adgr61837289469&gad_source=1&ds_rl=1294343&gclid=CjwKCAjw_e2wBhAEEiwAyFFFo6YIvsCN6gkuypSuq6n5ZHx85bpitVpQK97ikAVAaAEfsmeebj5o6hoCeaMQAvD_BwE&gclsrc=aw.ds",
+        "kullanim_amaci": ["A","B"],
+        "butce_araligi": "B",
+        "isletim_sistemi_tercihi": "A",
+        "tasinabilirlik": "A",
+        "ekran_boyutu": "A",
+        "toplam_depolama_alani": "B",
+        "hiz_gereksinimi": "A",
+        "etikets": "ABAAABA"
+    },
+    {
+        "urun_adi": "Apple MacBook Air 13.3",
+        "islemci": "M1 8CPU",
+        "ekran_karti": "M1 7GPU",
+        "ram": "8GB LPDDR4x",
+        "disk": "256GB NVMe M.2 SSD",
+        "fiyat": "25.999₺",
+        "urun_gorseli": "https://www.pt.com.tr/uploads/products/big/bdkXjQTfGu9xG4Vw78CR77m1gWZcIpmwdx3dSjxu.webp",
+        "link": "https://www.pt.com.tr/macbook-air-133-inc-m1-8cpu-7gpu-8gb-256gb-uzay-grisi-mgn63tua",
+        "kullanim_amaci": ["B","C"],
+        "butce_araligi": "D",
+        "isletim_sistemi_tercihi": "B",
+        "tasinabilirlik": "A",
+        "ekran_boyutu": "A",
+        "toplam_depolama_alani": "D",
+        "hiz_gereksinimi": "A",
+        "etikets": ["BDBAADA", "CDBAADA"]
+    },
+    {
+        "urun_adi": "Technopc Aura",
+        "islemci": "Intel Core i3-6157U",
+        "ekran_karti": "Harici Ekran Kartı Yok",
+        "ram": "4GB DDR3",
+        "disk": "128GB SSD",
+        "fiyat": "7.655₺",
+        "urun_gorseli": "https://productimages.hepsiburada.net/s/133/550/110000084741859.jpg/format:webp",
+        "link": "https://www.hepsiburada.com/technopc-aura-ti15s3-intel-core-i3-6157-4gb-128gb-ssd-freedos-15-6-tasinabilir-bilgisayar-p-HBCV00000VWUAT?magaza=LEAFHOME&utm_source=pc&utm_medium=epey&utm_campaign=c&utm_content=HBCV00000VWUAT&utm_term=c&wt_pc=epey.c.c.c",
+        "kullanim_amaci": "C",
+        "butce_araligi": "D",
+        "isletim_sistemi_tercihi": "A",
+        "tasinabilirlik": "A",
+        "ekran_boyutu": "B",
+        "toplam_depolama_alani": "D",
+        "hiz_gereksinimi": "D",
+        "etikets": "CDAABDD"
+    },
+    {
+        "urun_adi": "ASUS Zenbook Pro 14 Duo",
+        "islemci": "Intel Core i9-13900H",
+        "ekran_karti": "NVIDIA GeForce RTX 4060",
+        "ram": "16GB DDR4",
+        "disk": "1TB NVMe SSD",
+        "fiyat": "174.999₺",
+        "urun_gorseli": "https://cdn.dsmcdn.com/ty995/product/media/images/prod/SPM/PIM/20230831/14/4b166ced-d57e-34e4-bbc1-9d8d9fd3744d/1_org_zoom.jpg",
+        "link": "https://www.trendyol.com/asus/zenbook-pro-14-duo-ux8402vv-p1018w-i9-13900h-32gb-1tb-rtx4060-14-5-fhd-touch-oled-ekran-w11-p-758130026?merchantId=121368&v=tek-ebat&utm_source=aff_t&utm_medium=cpc&utm_campaign=epey_urun_listeleme&adjust_tracker=uv21fv4_za1u3cm&adjust_campaign=epey_urun_listeleme",
+        "kullanim_amaci": "A",
+        "butce_araligi": "A",
+        "isletim_sistemi_tercihi": "A",
+        "tasinabilirlik": ["A","B"],
+        "ekran_boyutu": "A",
+        "toplam_depolama_alani": "B",
+        "hiz_gereksinimi": "A",
+        "etikets": ["AAAAABA", "AAABABA"]
+    },
+    {
+        "urun_adi": "Apple MacBook Pro 16",
+        "islemci": "M3 Max 16CPU",
+        "ekran_karti": "M3 Max 40GPU",
+        "ram": "64GB LPDDR5",
+        "disk": "1TB NVMe M.2 SSD",
+        "fiyat": "160.999₺",
+        "urun_gorseli": "https://www.pt.com.tr/uploads/products/big/utDCJJrB7suay4bM8kLlWwyhKDyKzSycWV0bJ3J3.webp",
+        "link": "https://www.pt.com.tr/macbook-pro-16-inc-m3-max-16cpu-40gpu-64gb-2tb-uzay-siyahi-z1cm000jk",
+        "kullanim_amaci": ["B","C"],
+        "butce_araligi": "A",
+        "isletim_sistemi_tercihi": "B",
+        "tasinabilirlik": "A",
+        "ekran_boyutu": "B",
+        "toplam_depolama_alani": "B",
+        "hiz_gereksinimi": "A",
+        "etikets": ["BABABBA", "CABABBA"]
+    },
+    {
+        "urun_adi": "Apple MacBook Pro 16",
+        "islemci": "M3 Pro 12CPU",
+        "ekran_karti": "M3 Pro 18GPU",
+        "ram": "36GB LPDDR5",
+        "disk": "512GB NVMe M.2 SSD",
+        "fiyat": "100.999₺",
+        "urun_gorseli": "https://www.pt.com.tr/uploads/products/big/7QN8GhTyjNPwN4UoHkUMo3Bxx1lph4bRbbUJNaV5.webp",
+        "link": "https://www.pt.com.tr/macbook-pro-16-inc-m3-pro-12cpu-18gpu-36gb-512gb-uzay-siyahi-mrw23tua",
+        "kullanim_amaci": ["B","C"],
+        "butce_araligi": "A",
+        "isletim_sistemi_tercihi": "B",
+        "tasinabilirlik": "A",
+        "ekran_boyutu": "B",
+        "toplam_depolama_alani": "C",
+        "hiz_gereksinimi": "A",
+        "etikets": ["BABABCA", "CABABCA"]
+    },
+    {
+        "urun_adi": "Apple iMac 24",
+        "islemci": "M3 8CPU",
+        "ekran_karti": "M3 8GPU",
+        "ram": "16GB",
+        "disk": "512GB NVMe M.2 SSD",
+        "fiyat": "62.199₺",
+        "urun_gorseli": "https://www.pt.com.tr/uploads/products/big/IxqHQcJviTYQgNzg6zXQqWEl9ycj7IfT6EU3Kh6R.webp",
+        "link": "https://www.pt.com.tr/imac-24-inc-45k-m3-8cpu-8gpu-16gb-512gb-mavi-z197001u1",
+        "kullanim_amaci": ["B","C"],
+        "butce_araligi": "B",
+        "isletim_sistemi_tercihi": "B",
+        "tasinabilirlik": "B",
+        "ekran_boyutu": "C",
+        "toplam_depolama_alani": "C",
+        "hiz_gereksinimi": "A",
+        "etikets": ["BBBBCCA", "CBBBCCA"]
+    },
+    {
+        "urun_adi": "Apple iMac 24",
+        "islemci": "M3 8CPU",
+        "ekran_karti": "M3 8GPU",
+        "ram": "8GB",
+        "disk": "256GB NVMe M.2 SSD",
+        "fiyat": "45.799₺",
+        "urun_gorseli": "https://www.pt.com.tr/uploads/products/big/HGJrWZrKUFWkJJMlYIjKzbmfsb7V4P5VJT37edk1.webp",
+        "link": "https://www.pt.com.tr/imac-24-inc-45k-m3-8cpu-8gpu-8gb-256gb-gumus-mqr93tua",
+        "kullanim_amaci": ["B","C"],
+        "butce_araligi": "B",
+        "isletim_sistemi_tercihi": "B",
+        "tasinabilirlik": "B",
+        "ekran_boyutu": "C",
+        "toplam_depolama_alani": "C",
+        "hiz_gereksinimi": "A",
+        "etikets": ["BBBBCCA", "CBBBCCA"]
+    },
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+    {
         "urun_adi": "ASUS ROG Strix 18",
         "islemci": "Intel Core i9-13980HX",
         "ekran_karti": "NVIDIA GeForce RTX 4090",
